@@ -1,0 +1,45 @@
+function fibonaci ( n )
+{
+	if ( ( n == 0 ) || ( n == 1 ) )
+		return 1 ;
+	else
+		return fibonaci ( n - 2 ) + fibonaci ( n - 1 ) ;
+}
+
+function crearRectangulos ( n , r )
+{
+	if ( n == 1 )
+		DRAW r ;
+	else
+	{
+		DRAW r ;
+		SCALE r 2 ;
+		crearRectangulos ( n - 1 , r ) ; 
+	}
+}
+
+function crearCirculos ( n )
+{
+	x = CIRCULO 300 300 10 1 ;
+	y = 0 ;
+	while ( y < n )
+	{
+		DRAW x ;
+		SCALE x 2 ;
+		y ++ ;
+	}
+}
+
+function main ( ) 
+{
+	x = fibonaci ( 4 ) ;
+	if ( x == 10 )
+	{
+		r = RECTANGULO 300 300 20 20 1 ;
+		crearRectangulos ( 3 , r ) ;
+	}
+	else
+	{
+		crearCirculos ( 3 ) ;
+	}
+}

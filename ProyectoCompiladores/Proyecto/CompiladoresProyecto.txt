@@ -1,0 +1,617 @@
+1. Figuras Geometricas
+//Triangulo
+FORWARD[100];
+TURN[120];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[120];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[120];
+COLOR[0,0,255];
+
+// Cuadrado
+FORWARD[100];
+TURN[90];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[90];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[90];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[90];
+
+//Pentagono
+FORWARD[100];
+TURN[72];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[72];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[72];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[72];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[72];
+COLOR[0,0,255];
+
+//Hexagono
+FORWARD[100];
+TURN[60];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[60];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[60];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[60];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[60];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[60];
+COLOR[0,0,255];
+
+//Heptagono
+FORWARD[100];
+TURN[51.42];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[51.42];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[51.42];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[51.42];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[51.42];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[51.42];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[51.42];
+COLOR[0,0,255];
+
+//Octagono
+FORWARD[100];
+TURN[45];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[45];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[45];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[45];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[45];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[45];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[45];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[45];
+COLOR[0,0,255];
+
+//Nonagono
+FORWARD[100];
+TURN[40];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[40];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[40];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[40];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[40];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[40];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[40];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[40];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[40];
+COLOR[255,0,0];
+
+//Decagono
+FORWARD[100];
+TURN[36];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[36];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[36];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[36];
+COLOR[0,255,0];
+FORWARD[100];
+TURN[36];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[36];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[36];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[36];
+COLOR[0,0,255];
+FORWARD[100];
+TURN[36];
+COLOR[255,0,0];
+FORWARD[100];
+TURN[36];
+COLOR[0,255,0];
+
+2. Estrella de david
+function estrellaDavid () {
+	COLOR [235,222,0];
+    for(aux=0; aux<3; aux=aux+1){
+		FORWARD [$1];
+		TURN [120];
+    }
+	TURN[60];
+	FORWARD[$1-50];
+	TURN[120];
+	FORWARD[$1-120];
+	TURN[120];
+	for(aux=0; aux<3; aux=aux+1){
+		FORWARD [$1];
+		TURN [120];
+    }
+}
+estrellaDavid(200);
+
+
+3. Pentagrama
+function pentagrama () {
+	COLOR [255,57,0];
+	TURN [70];
+	FORWARD [$1];
+	x = 0;
+	while (x < 3){
+		TURN [145];
+		FORWARD [$1];
+		x=x+1;
+	}
+	TURN [142];
+	FORWARD [$1];
+}
+pentagrama(200);
+
+4. Regla
+FORWARD[-200];
+procedure rectangulo(){
+	TURN[270];
+	FORWARD[100];
+	TURN[270];
+	FORWARD[400];
+	TURN[270];
+	FORWARD[100];
+}
+procedure regla(){
+	if($1 < 400){
+		FORWARD[4];
+		TURN[90];
+		if( $2 < 4){
+			FORWARD[-5];
+			FORWARD[5];
+			TURN[270];
+			regla($1+4,$2+1);
+		}else{
+			FORWARD[-10];
+			FORWARD[10];
+			TURN[270];
+			regla($1+4,0);
+		}
+	}else{
+		rectangulo();
+	}
+}
+regla(0, 0);
+
+5. Arbol
+procedure tree(){
+ if($1>5){
+  FORWARD[$1];
+  TURN[20];
+  tree($1-5);
+  TURN[320];
+  tree($1-5);
+  TURN[20];
+  FORWARD[(-1)*($1)];
+ }
+}
+
+TURN[90];
+COLOR[0,0,0];
+TURN[180];
+FORWARD[200];
+TURN[180];
+COLOR[255,255,255];
+tree(60);
+
+
+6. Espiral Cuadrada
+procedure recur(){
+   if($1<2){
+	  FORWARD[$1*20];
+	}
+   else{
+	  FORWARD[$1*20];
+	  TURN[90];
+	  recur($1-1);
+   }
+}
+COLOR[0,0,0];
+FORWARD[-200];
+TURN[270];
+FORWARD[200];
+COLOR[255,255,255];
+TURN[90];
+recur(20);
+
+7. Espirografo
+procedure circulo(){
+   for(aux=0; aux<360; aux=aux+1){
+      COLOR[$1,$2,$3];
+      FORWARD[2];
+      TURN[1];
+   }
+}
+
+procedure flor(){
+   for(i=0;i<8;i=i+1){
+      circulo((i+1)*30, (i+1)*32, (i+1)*60);
+      TURN[45];
+   }
+}
+flor();
+
+
+8. Koch
+
+for(i=0;i<8;i=i+1){
+FORWARD[20];
+TURN[55];
+FORWARD[10];
+TURN[70];
+FORWARD[8];
+TURN[230];
+FORWARD[8];
+TURN[55];
+FORWARD[10];
+TURN[260];
+FORWARD[10];
+TURN[60];
+FORWARD[8];
+TURN[240];
+FORWARD[8];
+TURN[50];
+FORWARD[10];
+TURN[60];
+FORWARD[20];
+TURN[45];
+FORWARD[20];
+TURN[55];
+FORWARD[10];
+TURN[70];
+FORWARD[8];
+TURN[230];
+FORWARD[8];
+TURN[55];
+FORWARD[10];
+TURN[260];
+FORWARD[10];
+TURN[60];
+FORWARD[8];
+TURN[240];
+FORWARD[8];
+TURN[40];
+FORWARD[10];
+TURN[70];
+FORWARD[20];
+TURN[270];
+}
+ 9.Hilbert
+
+ procedure curva(){
+	FORWARD[$1];
+	TURN[90*$2];
+
+	FORWARD[$1];
+
+	TURN[90*$2];
+	FORWARD[$1];	
+}
+
+procedure cuadrado(){
+	curva($1,1*$2);
+	TURN[-90*$2];
+	FORWARD[$1];
+	curva($1,-1*$2);
+	TURN[90*$2];
+
+	FORWARD[$1];
+
+	TURN[90*$2];
+	curva($1,-1*$2);
+	FORWARD[$1];
+	TURN[-90*$2];	
+	curva($1,1*$2);	
+}
+
+procedure ciclos(){
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+
+	FORWARD[$1];
+
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);	
+}
+
+procedure ciclo(){
+	
+	
+	cuadrado($1,1);
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	cuadrado($1,1);
+	FORWARD[$1];
+	cuadrado($1,1);
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	cuadrado($1,1);
+}
+
+procedure estados(){
+	FORWARD[-240];
+	COLOR[0, 255, 255];
+	if($2==4){
+		ciclo($1);
+	}
+	if($2==3){
+		TURN[90];
+		ciclos($1);		
+	}
+	if($2==2){
+		cuadrado($1,1);
+	}
+	if($2==1){
+		TURN[90];
+		curva($1,-1);
+	}
+}
+
+estados(15,4);
+
+procedure cuadrado(){
+	curva($1,1*$2);
+	TURN[-90*$2];
+	FORWARD[$1];
+	curva($1,-1*$2);
+	TURN[90*$2];
+
+	FORWARD[$1];
+
+	TURN[90*$2];
+	curva($1,-1*$2);
+	FORWARD[$1];
+	TURN[-90*$2];	
+	curva($1,1*$2);	
+}
+
+procedure ciclos(){
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+
+	FORWARD[$1];
+
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);	
+}
+
+procedure ciclo(){
+	
+	
+	cuadrado($1,1);
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	cuadrado($1,1);
+	TURN[-90];
+	FORWARD[$1];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	TURN[-90];
+	cuadrado($1,1);
+	FORWARD[$1];
+	TURN[90];
+	cuadrado($1,-1);
+	FORWARD[$1];
+	cuadrado($1,-1);
+	TURN[90];
+	FORWARD[$1];
+	cuadrado($1,1);
+	FORWARD[$1];
+	
+	
+	
+	
+}
+
+procedure estados(){
+	FORWARD[-240];
+	TURN[-90];
+	FORWARD[200];
+	TURN[90];
+	COLOR[0, 255, 255];
+	if($2==4){
+		ciclo($1);
+	}
+	if($2==3){
+		TURN[90];
+		ciclos($1);		
+	}
+	if($2==2){
+		cuadrado($1,1);
+	}
+	if($2==1){
+		TURN[90];
+		curva($1,-1);
+	}
+}
+
+
+
+
+procedure curva(){
+	FORWARD[$1];
+	TURN[90*$2];
+
+	FORWARD[$1];
+
+	TURN[90*$2];
+	FORWARD[$1];	
+}
+
+
+estados(30,0);

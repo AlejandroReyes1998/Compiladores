@@ -1,0 +1,13 @@
+class Variable
+{
+	public Integer ivalor;
+	public Dibujable fvalor;
+	public Variable(Dibujable valor)
+	{
+		this.fvalor = valor;
+	}
+	public Variable(Integer valor)
+	{
+		this.ivalor = valor;
+	}
+}

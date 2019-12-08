@@ -1,0 +1,88 @@
+%{
+import java.io.File;
+%}
+
+%class     postfixCalculator
+%interface postfixCalculatorTokens
+%semantic  int : yylval
+%get       token
+%next      yylex()
+
+%token '+' '-' '*' '/' ';' INTEGER 
+
+%%
+prog 	: prog ';' exp     { System.out.println($3); }
+		| exp              { System.out.println($1); }
+		;
+		
+exp		: exp exp '+'   { $$ = $1 + $3;    			}
+		| exp exp '-'   { $$ = $1 - $3;    			}
+		| exp exp '*'   { $$ = $1 * $3;    			}
+		| exp exp '/'   { $$ = $1 / $3;    			}
+		| exp 'n'		{ $$ = -$1;    				}
+		| INTEGER 		{ $$ = $1;         			}
+		;		
+%%
+
+private void yyerror(String msg) {
+    System.out.println("ERROR: " + msg);
+    System.exit(1);
+  }
+
+  private int c;
+
+  private void nextChar() {
+    if (c>=0) {
+      try {
+        c = System.in.read();
+      } catch (Exception e) {
+        c = (-1);
+      }
+    }
+  }
+  
+  int token;
+  int yylval;
+  
+  int yylex() {
+    for (;;) {
+      // Skip whitespace
+      while (c==' ' || c=='\n' || c=='\t' || c=='\r') {
+        nextChar();
+      }
+      if (c<0) {
+        return (token=ENDINPUT);
+      }
+      switch (c) {
+        case '+' : nextChar();
+                   return token='+';
+        case '-' : nextChar();
+                   return token='-';
+        case '*' : nextChar();
+                   return token='*';
+        case '/' : nextChar();
+                   return token='/'; 
+		case ';' : nextChar();
+                   return token=';';
+        default  : if (Character.isDigit((char)c)) {
+                     int n = 0;
+                       do {
+                         n = 10*n + (c - '0');
+                         nextChar();
+                       } while (Character.isDigit((char)c));
+                       yylval = n;
+                       return token=INTEGER;
+                     } else {
+                       yyerror("Illegal character "+c);
+                       nextChar();
+                     }
+      }
+    }
+  }
+  
+  public static void main(String[] args) {
+    postfixCalculator calc = new postfixCalculator();
+    calc.nextChar(); // prime the character input stream
+    calc.yylex();    // prime the token input stream
+    calc.parse();    // parse the input
+  }

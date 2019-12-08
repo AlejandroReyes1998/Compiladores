@@ -1,0 +1,40 @@
+function factorial ( valor )
+{
+	if ( valor == 1 || valor == 2 )
+		return 1 ;
+	else
+		return factorial ( valor - 1 ) ;
+}
+
+function circulos ( )
+{
+	t = CIRCULO 305 305 10 1 ;
+	r = RECTANGULO 300 300 10 10 1 ; 
+	x = 1 ; 
+	while ( x <= 8 ) 
+	{
+	    if ( x <= 4 )
+	    {
+	         DRAW r ;
+	         SCALE r 2 ;
+	    }
+	    else
+	    {
+	         DRAW t ;
+	         SCALE t 2 ;
+	     }
+	     x ++ ;
+	}
+}
+
+function otro ( )
+{
+	t = CIRCULO 305 305 0 1 ;
+	DRAW t ;
+}
+
+r = factorial ( 3 ) ;
+if ( r == 3 )
+	circulos ( ) ;
+else
+	circulos ()

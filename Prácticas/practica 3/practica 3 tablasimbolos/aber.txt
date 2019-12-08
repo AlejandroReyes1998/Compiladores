@@ -1,0 +1,7 @@
+que partes tienen que ver con
+la variable
+
+que partes tienen que ver con la tabla
+de simbolos
+
+R=aqui se busca y si no esta se guarda la variable y el valor
